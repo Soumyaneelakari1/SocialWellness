@@ -42,9 +42,24 @@ export default function Login() {
         alert("Username does not exist. Please register.");
         return;
       }
-      setAuthState({ userId: existingUser.id });
+      else{
+        if (existingUser.password !== user.password) {
+          alert("Incorrect password. Please try again.");
+          return;
+        }
+        const existingVol = volunteers.find((v) => v.user.user_id === existingUser.user_id);
+        if(existingVol)
+          {
+            setAuthState({ vId: existingVol.id });
+            console.log(existingVol.id);
+          }
+        setAuthState({ userId: existingUser.user_id });
+        console.log(existingUser.user_id);
+        navigate("/home");
+      }
+      
       // console.log("user id login page: ", existingUser.user_id)
-      navigate("/home");
+      
 
     }
       
