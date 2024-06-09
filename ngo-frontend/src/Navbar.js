@@ -21,6 +21,9 @@ const Navbar = () => {
             <Link className="nav-link" to="/addvol">Volunteer</Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/volunteerlist">Volunteer List</Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/bloodcamp">BloodDonation Camps</Link>
           </li>
           <li className="nav-item">
