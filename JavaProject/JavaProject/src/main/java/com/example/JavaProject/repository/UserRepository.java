@@ -1,7 +1,9 @@
-package com.example.JavaProject.repository;
+package com.mpproject.volunteer.repository;
 
-import com.example.JavaProject.model.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.mpproject.volunteer.model.User;
 
 public interface UserRepository extends JpaRepository <User,Long> {
 }
