@@ -47,12 +47,12 @@ export default function Login() {
           alert("Incorrect password. Please try again.");
           return;
         }
-        const existingVol = volunteers.find((v) => v.user.user_id === existingUser.user_id);
-        if(existingVol)
-          {
-            setAuthState({ vId: existingVol.id });
-            console.log(existingVol.id);
-          }
+        // const existingVol = volunteers.find((v) => v.user.user_id === existingUser.user_id);
+        // if(existingVol)
+        //   {
+        //     setAuthState({ vId: existingVol.id });
+        //     console.log(existingVol.id);
+        //   }
         setAuthState({ userId: existingUser.user_id });
         console.log(existingUser.user_id);
         navigate("/home");
