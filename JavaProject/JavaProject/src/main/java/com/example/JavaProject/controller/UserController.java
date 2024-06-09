@@ -27,4 +27,14 @@ public class UserController {
     List<User> getAllUsers(){
         return userRepository.findAll();
     }
+    
+    @GetMapping("/user/role")
+    public String getUserRole(@RequestParam Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            return user.getRole();
+        } else {
+            return "User not found";
+        }
+    }
 }
