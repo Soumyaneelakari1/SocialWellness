@@ -40,7 +40,7 @@ export default function AddVaccine() {
         <div className='container'>
             <div className='row'>
                 <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
-                    <div className='text-center fs-2 my-3 fw-semibold text-primary-emphasis p-4 rounded'>Add Vaccine Camp</div>
+                    <div className='text-center fs-2 my-20 fw-semibold text-primary-emphasis p-4 rounded'>Add Vaccine Camp</div>
 
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className='mb-3'>

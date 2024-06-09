@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
+import AuthContext from '../AuthContext';
 
 export default function VaccineCamp() {
   const [camps, setCamps] = useState([]);
-
+  const [userRole, setUserRole] = useState('');
+  const { authState } = useContext(AuthContext);
   const { id } = useParams();
 
   useEffect(() => {
     loadCamps();
+    fetchUserRole(authState.userId);
   }, []);
 
   const loadCamps = async () => {
@@ -20,6 +23,11 @@ export default function VaccineCamp() {
     }
   };
 
+  const fetchUserRole = async (userId) => {
+    const res = await axios.get(`http://localhost:8080/user/role?userId=${userId}`);
+    setUserRole(res.data);
+    console.log(userRole)
+  };
 
   const deleteCamp = async (id) => {
     await axios.delete(`http://localhost:8080/vaccineCamp/${id}`);
@@ -50,12 +58,8 @@ export default function VaccineCamp() {
                 <td>{camp.vtime}</td>
                 <td>{camp.vlocation}</td>
                 <td>
-                  {/* <Link 
-                    className='btn btn-primary mx-2'
-                    to={`/viewCamp/${camp.id}`}
-                    >
-                      View
-                    </Link> */}
+                {userRole === 'admin' && (
+                    <>
                   <Link
                     className="btn btn-outline-primary mx-2"
                     to={`/editVaccine/${camp.id}`}
@@ -68,6 +72,8 @@ export default function VaccineCamp() {
                   >
                     Delete
                   </button>
+                  </>
+                )}
                 </td>
               </tr>
             ))}
