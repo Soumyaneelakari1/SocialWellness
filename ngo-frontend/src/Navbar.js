@@ -35,46 +35,51 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-xl fixed-top navbar-scroll shadow-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
-      <Link className="navbar-brand" to="/">NGO</Link>
-      <div className="collapse navbar-collapse">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/home">Home</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/adduser">Register</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/addvol">Volunteer</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/event">Events</Link>
-          </li>
-          {userRole === 'admin' && (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">NGO</Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/volunteerlist">Volunteer List</Link>
+              <Link className="nav-link" to="/home">Home</Link>
             </li>
-          )}
-          <li className="nav-item">
-            <Link className="nav-link" to="/bloodcamp">Blood Donation Camps</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/vaccinecamp">Vaccination Centres</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/add-donation">Donate</Link>
-          </li>
-          {authState.userId === 0 ? (
             <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
+              <Link className="nav-link" to="/adduser">Register</Link>
             </li>
-          ) : (
             <li className="nav-item">
-              <button className="nav-link btn" onClick={logout}>Logout</button>
+              <Link className="nav-link" to="/addvol">Volunteer</Link>
             </li>
-          )}
-        </ul>
+            <li className="nav-item">
+              <Link className="nav-link" to="/event">Events</Link>
+            </li>
+            {userRole === 'admin' && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/volunteerlist">Volunteer List</Link>
+              </li>
+            )}
+            <li className="nav-item">
+              <Link className="nav-link" to="/bloodcamp">Blood Donation Camps</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/vaccinecamp">Vaccination Centres</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/add-donation">Donate</Link>
+            </li>
+            {authState.userId === 0 ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">Login</Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <button className="nav-link btn" onClick={logout}>Logout</button>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
     </nav>
   );
