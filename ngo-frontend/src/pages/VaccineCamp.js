@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import AuthContext from '../AuthContext';
 import './VaccineCamp.css';
-
+import vaccine1 from '../images/vaccine.png'
 export default function VaccineCamp() {
   const [camps, setCamps] = useState([]);
   const [userRole, setUserRole] = useState('');
