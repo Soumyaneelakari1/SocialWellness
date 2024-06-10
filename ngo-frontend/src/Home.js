@@ -8,10 +8,8 @@ import image3 from './images/image6.jpg'; // Importing image3 from src/images di
 import image4 from './images/social.jpg';
 import image5 from './images/blooddon.jpg';
 import image6 from './images/volt.jpg';
-import clothesImage from './images/clothes.jpg'
-import booksImage from './images/books.jpg';
-import healthImage from './images/health.jpg';
-import educationImage from './images/education.jpg';
+import goal1 from './images/goal1.jpg';
+import goal2 from './images/goal2.avif'
 
 export const Home = () => {
   return (
@@ -48,32 +46,25 @@ export const Home = () => {
         </div>
       </section>
 
-      <div className="container-xxl mt-5 pt-5 md-5 pb-5 spacer">
-        <h1>Our Goals</h1>
-        <div className="row mt-5"></div>
-        <div className="row mt-4">
-          <div className="col-md-3">
-            <div className="card">
-              <img src={clothesImage} className="card-img-top" alt="Donate clothes" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              
+      <div className="container-xxl mt-5 pt-5 spacer" style={{ fontSize: '1.5em', fontWeight: 'bold', fontFamily: 'cursive', backgroundColor: '#e794a4' }}>
+        <h1 className="text-center mb-4" style={{fontFamily: 'cursive'}}>Our Goals</h1>
+        <div className="row justify-content-center">
+          <div className="col-md-3 d-flex">
+            <div className="card mb-4 flex-fill">
+              <img src={goal1} className="card-img-top" alt="goal 1" style={{ width: '100%', height: '250px', objectFit: 'cover' }} />
+              <div className="card-body text-center">
+                <h5 className="card-title" style={{ fontSize: '1.5em', fontWeight: 'bold', fontFamily: 'cursive' }}>#1</h5>
+                <p className="card-text" style={{ fontSize: '1.2em', fontFamily: 'cursive' }}>Enhance Healthcare Access</p>
+              </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img src={booksImage} className="card-img-top" alt="Donate books" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img src={healthImage} className="card-img-top" alt="Donate for health" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img src={educationImage} className="card-img-top" alt="Donate for education" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              
+          <div className="col-md-3 d-flex">
+            <div className="card mb-4 flex-fill">
+              <img src={goal2} className="card-img-top" alt="goal 2" style={{ width: '100%', height: '250px', objectFit: 'cover' }} />
+              <div className="card-body text-center">
+                <h5 className="card-title" style={{ fontSize: '1.5em', fontWeight: 'bold', fontFamily: 'cursive'}}>#2</h5>
+                <p className="card-text" style={{ fontSize: '1.2em' ,fontFamily: 'cursive'}}>Promote Health    Education</p>
+              </div>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ export const AddDonation = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:8080/api/donations', donation);
-      navigate('/');  // Redirect to home page or donations list
+      navigate('/');  
     } catch (error) {
       console.error('Error adding donation', error);
       alert('There was an error adding the donation');
