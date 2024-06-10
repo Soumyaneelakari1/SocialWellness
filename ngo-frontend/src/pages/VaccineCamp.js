@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import AuthContext from '../AuthContext';
+import './VaccineCamp.css';
 
 export default function VaccineCamp() {
   const [camps, setCamps] = useState([]);
@@ -34,25 +35,28 @@ export default function VaccineCamp() {
     loadCamps();
   }
   return (
-    <div className="container">
-      <h2 className='my-3'>Vaccination Centres</h2>
-      <div className="py-4">
-        <table className="table border shadow">
-          <thead>
+    <div className="vaccine-container container-fluid p-0" style={{ backgroundImage: `url(${vaccine1})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+      <div className="overlay"></div>
+      <div className="text-center">
+        {/* <img src="logo.png" alt="Logo" className="logo" /> Add your logo image */}
+        <h2 className="vaccine-heading my-1 mt-5 pt-5">Vaccination Centers</h2>
+      </div>
+      <div className="vaccine-table py-4">
+        <table className="table table-hover table-striped border shadow">
+          <thead className="vaccine-table-head">
             <tr>
               <th scope="col">S.N</th>
               <th scope="col">Vaccine Name</th>
               <th scope="col">Date</th>
               <th scope="col">Time</th>
               <th scope="col">Venue</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
             {camps.map((camp, index) => (
-              <tr>
-                <th scope="row" key={index}>
-                  {index + 1}
-                </th>
+              <tr key={camp.id}>
+                <th scope="row">{index + 1}</th>
                 <td>{camp.vaccine}</td>
                 <td>{camp.vdate}</td>
                 <td>{camp.vtime}</td>
@@ -60,16 +64,10 @@ export default function VaccineCamp() {
                 <td>
                 {userRole === 'admin' && (
                     <>
-                  <Link
-                    className="btn btn-outline-primary mx-2"
-                    to={`/editVaccine/${camp.id}`}
-                  >
+                  <Link className="vaccine-button2 btn mx-2" to={`/editVaccine/${camp.id}`}>
                     Edit
                   </Link>
-                  <button
-                    className="btn btn-danger mx-2"
-                    onClick={() => deleteCamp(camp.id)}
-                  >
+                  <button className="vaccine-button2 btn mx-2" onClick={() => deleteCamp(camp.id)}>
                     Delete
                   </button>
                   </>
@@ -80,8 +78,11 @@ export default function VaccineCamp() {
           </tbody>
         </table>
       </div>
-      <Link className='btn btn-primary' to='/addvaccine'>Add Vaccination Camp</Link>
+      <div className="d-flex justify-content-center my-3">
+        <Link className="vaccine-button btn btn-primary" to="/addvaccine">
+          Add Vaccination Camp
+        </Link>
+      </div>
     </div>
-
-  )
+  );
 }

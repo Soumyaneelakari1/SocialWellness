@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../pages//VaccineCamp.css';
 
 export default function AddVaccine() {
     let navigate = useNavigate();
@@ -37,19 +38,20 @@ export default function AddVaccine() {
     };
 
     return (
-        <div className='container'>
+        <div className='addvaccine-page'>
+        <div className='vaccine-conatainer container mt-5 pt-5'>
             <div className='row'>
-                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
-                    <div className='text-center fs-2 my-20 fw-semibold text-primary-emphasis p-4 rounded'>Add Vaccine Camp</div>
+                <div className='addvaccine-form col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+                    <div className='vaccine-heading text-center fs-2 my-20 fw-semibold p-4 rounded'>Add Vaccine Camp</div>
 
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className='mb-3'>
-                            <label htmlFor='vaccine' className='form-label'>Vaccine Name</label>
+                            <label htmlFor='vaccine' className='form-label fs-5'>Vaccine Name</label>
                             <input type={"text"} className='form-control' placeholder='Enter Vaccine Name'
                                 name='vaccine' value={vaccine} onChange={(e) => onInputChange(e)} />
                         </div>
                         <div className='mb-3'>
-                            <label htmlFor='vdate' className='form-label'>Date</label>
+                            <label htmlFor='vdate' className='form-label fs-5'>Date</label>
                             <input type={"date"} className='form-control' placeholder='Select date'
                                 name="vdate" value={vdate} onChange={(e) => onInputChange(e)} />
                         </div>
@@ -95,7 +97,7 @@ export default function AddVaccine() {
                             </div>
                         </div>
                         <div className='mb-3'>
-                            <label htmlFor='vlocation' className='form-label'>Location</label>
+                            <label htmlFor='vlocation' className='form-label fs-5'>Location</label>
                             <input type={'text'} className='form-control' name='vlocation' placeholder='Enter Location'
                             value={vlocation} onChange={(e)=>onInputChange(e)}/>
                         </div>
@@ -104,6 +106,7 @@ export default function AddVaccine() {
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
