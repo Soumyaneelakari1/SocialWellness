@@ -11,20 +11,36 @@ body {
     text-align: center;
   }
   
-  .hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-image: url(./images/getinvo.jpg);
-  }
-  
-  .hero-text {
-    color: #fff;
-    text-align: center;
-  }
+  /* Home.css */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), url(./images/volunteer2.avif);
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  filter: blur(2px); /* Adjust the blur radius as needed */
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+}
   
   .call-to-action {
     background-color: #007bff;
@@ -123,5 +139,11 @@ body {
   
   .info-content p {
     margin-bottom: 0;
+  }
+
+
+  .spacer {
+    padding-top: 40px; /* Adjust the value as needed */
+    background-color: white;
   }
   

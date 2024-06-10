@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './Home.css'; // Import the CSS file for additional styling
 import image1 from './images/happy1.jpg'; // Importing image1 from src/images directory
 import image2 from './images/volunteer1.jpg'; // Importing image2 from src/images directory
@@ -7,6 +8,10 @@ import image3 from './images/image6.jpg'; // Importing image3 from src/images di
 import image4 from './images/social.jpg';
 import image5 from './images/blooddon.jpg';
 import image6 from './images/volt.jpg';
+import clothesImage from './images/clothes.jpg'
+import booksImage from './images/books.jpg';
+import healthImage from './images/health.jpg';
+import educationImage from './images/education.jpg';
 
 export const Home = () => {
   return (
@@ -31,16 +36,48 @@ export const Home = () => {
         </Carousel.Item>
       </Carousel>
 
-      {/* Cream-colored background */}
-      <div className="cream-bg"></div>
+      <div className="container-xxl mt-5 pt-5 md-5 pb-5 spacer">
+
+      </div>
 
       <section className="hero">
         <div className="hero-text">
           <h1>Empowering Youth, Enriching Lives</h1>
           <p>Join the movement to create a positive impact in the lives of underprivileged communities</p>
-          <button className="call-to-action">Get Involved</button>
+          <Link className='btn btn-primary call-to-action' to='/addvol'>Get Involved</Link>
         </div>
       </section>
+
+      <div className="container-xxl mt-5 pt-5 md-5 pb-5 spacer">
+        <h1>Our Goals</h1>
+        <div className="row mt-5"></div>
+        <div className="row mt-4">
+          <div className="col-md-3">
+            <div className="card">
+              <img src={clothesImage} className="card-img-top" alt="Donate clothes" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+              
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <img src={booksImage} className="card-img-top" alt="Donate books" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+              
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <img src={healthImage} className="card-img-top" alt="Donate for health" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+              
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <img src={educationImage} className="card-img-top" alt="Donate for education" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+              
+            </div>
+          </div>
+        </div>
+      </div>
 
       <section className="featured-section">
         <h2>Our Latest Initiatives</h2>
