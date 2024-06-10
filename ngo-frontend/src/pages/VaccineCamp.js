@@ -78,11 +78,13 @@ export default function VaccineCamp() {
           </tbody>
         </table>
       </div>
+      {userRole === 'admin' && (
       <div className="d-flex justify-content-center my-3">
         <Link className="vaccine-button btn btn-primary" to="/addvaccine">
           Add Vaccination Camp
         </Link>
       </div>
+      )}
     </div>
   );
 }

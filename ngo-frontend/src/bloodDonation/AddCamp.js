@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import '../pages/BloodCamp.css';
 export default function AddCamp() {
     let navigate = useNavigate();
     const currdate = new Date();
@@ -44,10 +44,11 @@ export default function AddCamp() {
     };
 
     return (
-        <div className='container'>
+        <div className='adddonation-page'>
+        <div className='donation-container container mt-5 pt-5'>
             <div className='row'>
-                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow' style={{ backgroundColor: 'lightblue' }}>
-                    <div className='text-center fs-2 my-3 fw-semibold text-primary-emphasis p-3 rounded'>Add Blood Donation Camp</div>
+                <div className='adddonation-form col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+                    <div className='donation-heading text-center fs-2 my-3 fw-semibold text-primary-emphasis p-3 rounded'>Add Blood Donation Camp</div>
                     <form onSubmit={onSubmit}>
                         <div className='mb-3'>
                             <label htmlFor='date' className='form-label fs-5'>Date</label>
@@ -129,13 +130,16 @@ export default function AddCamp() {
                                 onChange={onInputChange}
                             />
                         </div>
-                        <button type='submit' className='btn btn-outline-primary'>Submit</button>
-                        <Link className='btn btn-outline-danger mx-2' to='/'>
+                        <div className="d-flex justify-content-center my-3">
+                        <button type='submit' className='donation-button btn btn-primary mx-2'>Submit</button>
+                        <Link className='donation-button btn btn-primary' to='/'>
                             Cancel
                         </Link>
+                        </div>
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

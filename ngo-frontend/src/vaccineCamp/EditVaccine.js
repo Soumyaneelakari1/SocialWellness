@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import '../pages//VaccineCamp.css';
+import '../pages/VaccineCamp.css';
 
 export default function EditVaccine() {
   let navigate = useNavigate();
