@@ -27,9 +27,10 @@ export default function AddUser() {
     ph_no:0,
     address:"",
     role:"User",
+    password: "",
   });
 
-  const {  username, firstName, lastName, email,ph_no,address,role } = user;
+  const {  username, firstName, lastName, email,ph_no,address,role, password } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -129,6 +130,19 @@ export default function AddUser() {
                 placeholder="Enter your Address"
                 name="address"
                 value={address}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                type={"password"}
+                className="form-control"
+                placeholder="Enter your Password"
+                name="password"
+                value={password}
                 onChange={(e) => onInputChange(e)}
               />
             </div>

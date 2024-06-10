@@ -19,7 +19,7 @@ export default function Login() {
     const result = await axios.get("http://localhost:8080/users");
     // console.log("here users: ", result.data);
     setUsers(result.data);
-    // console.log("here users 2: ", users);
+    console.log("here users 2: ", users);
   };
 
   const [user, setUser]=useState({
@@ -53,8 +53,8 @@ export default function Login() {
         //     setAuthState({ vId: existingVol.id });
         //     console.log(existingVol.id);
         //   }
-        setAuthState({ userId: existingUser.user_id });
-        console.log(existingUser.user_id);
+        setAuthState({ userId: existingUser.id });
+        console.log("login submit ", existingUser.id);
         navigate("/home");
       }
       
