@@ -6,10 +6,11 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     userId: 0,  // 0 means not logged in, any other value means logged in
+    vId:0,
   });
 
   const logout = () => {
-    setAuthState({ userId: 0 });
+    setAuthState({ userId: 0 ,vId:0 });
   };
 
   return (

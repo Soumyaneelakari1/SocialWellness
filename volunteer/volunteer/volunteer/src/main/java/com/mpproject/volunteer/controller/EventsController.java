@@ -39,4 +39,17 @@ public class EventsController {
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
     
+    @PutMapping("/updateevent/{id}")
+    public Events updateEvent(@RequestBody Events newEvent, @PathVariable Long id) {
+        return eventsRepository.findById(id)
+                .map(event -> {
+                    event.setEname(newEvent.getEname());
+                    event.setDate(newEvent.getDate());
+                    event.setTime(newEvent.getTime());
+                    event.setVenue(newEvent.getVenue());
+                    event.setTask(newEvent.getTask());
+                    return eventsRepository.save(event);
+                })
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
 }

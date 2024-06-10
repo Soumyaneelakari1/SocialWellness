@@ -48,6 +48,9 @@ const Navbar = () => {
           <li className="nav-item">
             <Link className="nav-link" to="/addvol">Volunteer</Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/event">Events</Link>
+          </li>
           {userRole === 'admin' && (
             <li className="nav-item">
               <Link className="nav-link" to="/volunteerlist">Volunteer List</Link>

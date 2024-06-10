@@ -18,8 +18,9 @@ import AddVaccine from './vaccineCamp/AddVaccine';
 import EditVaccine from './vaccineCamp/EditVaccine';
 import AddDonation from './Donation/AddDonation';
 import VolunteerList from './volunteers/VolunteerList';
-
-
+import Event from './pages/Event';
+import AddEvent from './Events/AddEvent';
+import EditEvent from './Events/EditEvent';
 
 function App() {
 
@@ -43,6 +44,9 @@ function App() {
             <Route exact path="/editvaccine/:id" element={<EditVaccine />} />
             <Route path="/add-donation" element={<AddDonation />} />
             <Route path="/volunteerlist" element={<VolunteerList />} />
+            <Route path="/event" element={<Event />} />
+            <Route path="/addevent" element={<AddEvent />} />
+            <Route path="/editevent/:id" element={<EditEvent />} />
           </Routes>
         </Router>
       </AuthProvider>

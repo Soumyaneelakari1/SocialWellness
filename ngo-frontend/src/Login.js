@@ -8,11 +8,13 @@ export default function Login() {
     let navigate=useNavigate();
     const { setAuthState } = useContext(AuthContext);
     const [users, setUsers] = useState([]);
+    const [vols, setVols] = useState([]);
 
   const { id } = useParams();
 
   useEffect(() => {
     loadUsers();
+    loadVols();
   }, []);
 
   const loadUsers = async () => {
@@ -20,6 +22,13 @@ export default function Login() {
     // console.log("here users: ", result.data);
     setUsers(result.data);
     console.log("here users 2: ", users);
+  };
+
+  const loadVols = async () => {
+    const result = await axios.get("http://localhost:8080/volunteers");
+    // console.log("here users: ", result.data);
+    setVols(result.data);
+    console.log("here vols 2: ", vols);
   };
 
   const [user, setUser]=useState({
@@ -37,31 +46,30 @@ export default function Login() {
     const onSubmit = async (e) => {
       e.preventDefault();
       await loadUsers();
+      await loadVols();
+  
       const existingUser = users.find((u) => u.username === user.username);
       if (!existingUser) {
-        alert("Username does not exist. Please register.");
-        return;
-      }
-      else{
-        if (existingUser.password !== user.password) {
-          alert("Incorrect password. Please try again.");
+          alert("Username does not exist. Please register.");
           return;
-        }
-        // const existingVol = volunteers.find((v) => v.user.user_id === existingUser.user_id);
-        // if(existingVol)
-        //   {
-        //     setAuthState({ vId: existingVol.id });
-        //     console.log(existingVol.id);
-        //   }
-        setAuthState({ userId: existingUser.id });
-        console.log("login submit ", existingUser.id);
-        navigate("/home");
+      } else {
+          if (existingUser.password !== user.password) {
+              alert("Incorrect password. Please try again.");
+              return;
+          }
+  
+          const existingVol = vols.find((v) => v.user.id === existingUser.id);
+          if (!existingVol) {
+              setAuthState({ userId: existingUser.id, vId: 0 });
+          } else {
+              setAuthState({ userId: existingUser.id, vId: existingVol.id });
+          }
+  
+          console.log("login submit ", existingUser.id, existingVol ? existingVol.id : null);
+          navigate("/home");
       }
-      
-      // console.log("user id login page: ", existingUser.user_id)
-      
-
-    }
+  }
+    
       
   return (
     <div className="container-fluid vh-80 d-flex justify-content-center align-items-center login-page" style={{ backgroundImage: `url(${socialHelpImage})`, backgroundSize: 'cover' }}>
