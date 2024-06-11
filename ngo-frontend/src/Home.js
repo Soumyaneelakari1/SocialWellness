@@ -70,6 +70,52 @@ export const Home = () => {
         </div>
       </div>
 
+      <div className="container mt-5">
+      {/* Left to Right Gradient */}
+      <div className="row align-items-center mb-4 p-3" style={leftToRightGradientStyle}>
+        <div className="col-md-6 text-left">
+          <h3>Text on the Left</h3>
+          <p>This is some text on the left side of the container with a left to right gradient background.</p>
+        </div>
+        <div className="col-md-6 text-right">
+          <img src="https://via.placeholder.com/150" alt="Placeholder" className="img-fluid"/>
+        </div>
+      </div>
+
+      {/* Right to Left Gradient */}
+      <div className="row align-items-center mb-4 p-3" style={rightToLeftGradientStyle}>
+        <div className="col-md-6 text-left order-md-2">
+          <h3>Text on the Right</h3>
+          <p>This is some text on the right side of the container with a right to left gradient background.</p>
+        </div>
+        <div className="col-md-6 text-right order-md-1">
+          <img src="https://via.placeholder.com/150" alt="Placeholder" className="img-fluid"/>
+        </div>
+      </div>
+
+      {/* Left to Right Gradient */}
+      <div className="row align-items-center mb-4 p-3" style={leftToRightGradientStyle}>
+        <div className="col-md-6 text-left">
+          <h3>Text on the Left</h3>
+          <p>This is some text on the left side of the container with a left to right gradient background.</p>
+        </div>
+        <div className="col-md-6 text-right">
+          <img src="https://via.placeholder.com/150" alt="Placeholder" className="img-fluid"/>
+        </div>
+      </div>
+
+      {/* Right to Left Gradient */}
+      <div className="row align-items-center p-3" style={rightToLeftGradientStyle}>
+        <div className="col-md-6 text-left order-md-2">
+          <h3>Text on the Right</h3>
+          <p>This is some text on the right side of the container with a right to left gradient background.</p>
+        </div>
+        <div className="col-md-6 text-right order-md-1">
+          <img src="https://via.placeholder.com/150" alt="Placeholder" className="img-fluid"/>
+        </div>
+      </div>
+    </div>
+
       <section className="featured-section">
         <h2>Our Latest Initiatives</h2>
         <ul>
@@ -102,5 +148,13 @@ export const Home = () => {
     </div>
   );
 };
+const leftToRightGradientStyle = {
+  background: 'linear-gradient(to right, #ffc0cb, #ffffff)'
+};
+
+const rightToLeftGradientStyle = {
+  background: 'linear-gradient(to left, #ffc0cb, #ffffff)'
+};
+
 
 export default Home;
