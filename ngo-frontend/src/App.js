@@ -21,7 +21,10 @@ import VolunteerList from './volunteers/VolunteerList';
 import Event from './pages/Event';
 import AddEvent from './Events/AddEvent';
 import EditEvent from './Events/EditEvent';
-
+import BloodCenter from'./pages/BloodCenter';
+import AddCenter from "./BloodCenter/AddCenter";
+import EditCenter from "./BloodCenter/EditCenter";
+import ViewCenter from "./BloodCenter/ViewCenter";
 function App() {
 
   return (
@@ -47,6 +50,10 @@ function App() {
             <Route path="/event" element={<Event />} />
             <Route path="/addevent" element={<AddEvent />} />
             <Route path="/editevent/:id" element={<EditEvent />} />
+            <Route path="/bloodcenter" element={<BloodCenter />} />
+            <Route exact path="/addcenter" element={<AddCenter />} />
+          <Route exact path="/editcenter/:id" element={<EditCenter />} />
+          <Route exact path="/viewcenter/:id" element={<ViewCenter />} />
           </Routes>
         </Router>
       </AuthProvider>

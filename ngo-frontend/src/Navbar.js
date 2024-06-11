@@ -67,8 +67,12 @@ const Navbar = () => {
               <Link className="nav-link" to="/vaccinecamp">Vaccination Centres</Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" to="/bloodcenter">Blood Centers</Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" to="/add-donation">Donate</Link>
             </li>
+            
             {authState.userId === 0 ? (
               <li className="nav-item">
                 <Link className="nav-link" to="/login">Login</Link>
