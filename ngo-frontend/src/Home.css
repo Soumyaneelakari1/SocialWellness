@@ -147,3 +147,13 @@ body {
     background-color: white;
   }
   
+#footer{
+  height: 10vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -137,7 +137,7 @@ export const Home = () => {
 
       <section className="social-wellness">
       <div className="row mt-4" >
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" style={{backgroundColor: 'crimson'}}>
+        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" style={{backgroundColor: '#c73d54'}}>
           <h2 className="text-center m-4">6 Strategies for Improving Your Social Health</h2>
             <div className='card'>
               <p>Social connections might help protect health and lengthen life. Scientists are finding that our links to others can have powerful effects on our health.</p>
@@ -154,6 +154,9 @@ export const Home = () => {
           </div>
         </div>
       </section>
+      <div id="footer">
+            <p>Copyright &copy; All rights reserved</p>
+      </div>
     </div>
   );
 };
