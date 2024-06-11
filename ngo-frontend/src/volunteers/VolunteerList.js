@@ -20,18 +20,7 @@ function VolunteerList() {
     <div>
       <h2>List of Volunteers</h2>
       <div className="card-container">
-        {volunteers.map(volunteer => (
-          <div className="card" id="volList" key={volunteer.id}>
-            <p className="heading"><strong>Volunteer ID:</strong> {volunteer.id}</p>
-            <p className="heading"><strong>User ID:</strong> {volunteer.user.id}</p>
-            <p><strong>Name:</strong> {volunteer.user.firstName} {volunteer.user.lastName}</p>
-            <p><strong>Username:</strong> {volunteer.user.username}</p>
-            <p><strong>Email:</strong> {volunteer.user.email}</p>
-            <p><strong>Skills:</strong> {volunteer.skills.join(', ')}</p>
-            <p><strong>Preferred Tasks:</strong> {volunteer.prefTasks.join(', ')}</p>
-            <p><strong>Preferred Days:</strong> {volunteer.prefDays.join(', ')}</p>
-          </div>
-        ))}
+        
         {volunteers.map((volunteer, index) => (
       <div className="col-md-12 mb-4" key={volunteer.eid}>
         <div className="card border-0 shadow" style={{ backgroundColor: 'lightblue', borderRadius: '15px' }}>
