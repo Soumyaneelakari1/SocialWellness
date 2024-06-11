@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState ,useEffect} from "react";
 import { Link, useNavigate ,useParams} from "react-router-dom";
+import regImg from '../images/register.jpg';
 
 export default function AddUser() {
   let navigate = useNavigate();
@@ -47,7 +48,7 @@ export default function AddUser() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{backgroundColor:'peach'}}>
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Register User</h2>

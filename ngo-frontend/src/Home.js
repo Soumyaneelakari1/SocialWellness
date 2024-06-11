@@ -51,7 +51,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <div className="container-xxl mt-5 pt-5 spacer" style={{ fontSize: '1.5em', fontWeight: 'bold', fontFamily: 'cursive', backgroundColor: '#e794a4' }}>
+      <div className="container-xxl mt-5 pt-5 spacer" style={{ fontSize: '1.5em', fontWeight: 'bold', fontFamily: 'cursive', backgroundColor: '#efac71' }}>
         <h1 className="text-center mb-4" style={{fontFamily: 'cursive'}}>Our Goals</h1>
         <div className="row justify-content-center">
           <div className="col-md-3 d-flex">
@@ -137,7 +137,7 @@ export const Home = () => {
 
       <section className="social-wellness">
       <div className="row mt-4" >
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" style={{backgroundColor: '#c73d54'}}>
+        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" style={{backgroundColor: '#efac71'}}>
           <h2 className="text-center m-4">6 Strategies for Improving Your Social Health</h2>
             <div className='card'>
               <p>Social connections might help protect health and lengthen life. Scientists are finding that our links to others can have powerful effects on our health.</p>
@@ -161,11 +161,11 @@ export const Home = () => {
   );
 };
 const leftToRightGradientStyle = {
-  background: 'linear-gradient(to right, #ffc0cb, #ffffff)'
+  background: 'linear-gradient(to right, #ffdab9, #ffffff)'
 };
 
 const rightToLeftGradientStyle = {
-  background: 'linear-gradient(to left, #ffc0cb, #ffffff)'
+  background: 'linear-gradient(to left, #ffdab9, #ffffff)'
 };
 
 const fixedImageStyle = {
