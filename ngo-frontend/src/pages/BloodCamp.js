@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import AuthContext from '../AuthContext';
-
+import bloodDonation from '../images/bloodDonation4.jpg';
 export default function BloodCamp() {
   const[camps,setCamps] = useState([]);
   const [userRole, setUserRole] = useState('');
@@ -31,16 +31,23 @@ export default function BloodCamp() {
     loadCamps();
   }
     return (
-        <div className="container">
-        <div className="py-4">
-          <table className="table border shadow">
-            <thead>
+      <div className="donation-container container-fluid p-0" style={{ backgroundImage: `url(${bloodDonation})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+
+<div className="overlay"></div>
+      <div className="text-center">
+        <h2 className="donation-heading my-1 mt-5 pt-5">Blood Donation Centers</h2>
+      </div>
+      <div className="donation-table py-4">
+      <table className="table table-hover table-striped border shadow">
+      <thead className="donation-table-head">
               <tr>
                 <th scope="col">S.N</th>
                 <th scope="col">Date</th>
                 <th scope="col">Time</th>
                 <th scope="col">Day</th>
                 <th scope="col">Venue</th>
+                <th scope="col">Actions</th>
+/
               </tr>
             </thead>
             <tbody>
@@ -56,10 +63,10 @@ export default function BloodCamp() {
                   <td>
                   {userRole === 'admin' && (
                     <>
-                      <Link className="btn btn-outline-primary mx-2" to={`/editCamp/${camp.id}`}>
+                      <Link className="donation-button2 btn mx-2" to={`/editCamp/${camp.id}`}>
                         Edit
                       </Link>
-                      <button className="btn btn-danger mx-2" onClick={() => deleteCamp(camp.id)}>
+                      <button className="donation-button2 btn mx-2" onClick={() => deleteCamp(camp.id)}>
                         Delete
                       </button>
                     </>
@@ -71,9 +78,11 @@ export default function BloodCamp() {
           </table>
         </div>
         {userRole === 'admin' && (
-        <Link className="btn btn-primary" to="/addcamp">
-          Add Blood Donation Camp
-        </Link>
+       <div className="d-flex justify-content-center my-3">
+       <Link className="donation-button btn btn-primary" to="/addcamp">
+         Add Blood Donation Camp
+       </Link>
+     </div>
       )}
     </div>
         

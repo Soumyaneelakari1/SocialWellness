@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../AuthContext";
+import './volunteers.css';
 
 export const AddVolunteer = () => {
   let navigate = useNavigate();
@@ -69,9 +70,9 @@ export const AddVolunteer = () => {
   };
 
   return (
-    <div className="container">
+    <div className="volunteerpage">
       <div className="row">
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
+        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" id="volunteerdiv">
           <h2 className="text-center m-4">Volunteer Registration</h2>
           <form onSubmit={onSubmit}>
             <div className="mb-3">

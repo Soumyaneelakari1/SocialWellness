@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../pages//VaccineCamp.css';
+import '../pages/VaccineCamp.css';
 
 export default function AddVaccine() {
     let navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function AddVaccine() {
 
     return (
         <div className='addvaccine-page'>
-        <div className='vaccine-conatainer container mt-5 pt-5'>
+        <div className='vaccine-container container mt-5 pt-5'>
             <div className='row'>
                 <div className='addvaccine-form col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
                     <div className='vaccine-heading text-center fs-2 my-20 fw-semibold p-4 rounded'>Add Vaccine Camp</div>
