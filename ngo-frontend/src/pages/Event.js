@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import AuthContext from '../AuthContext';
-
+import './Events.css';
 export default function Event() {
   const [events, setEvents] = useState([]);
   const { authState } = useContext(AuthContext);
@@ -71,7 +71,7 @@ export default function Event() {
   }, [volevent]);
 
   return (
-    <div className="container" >
+    <div className="Events" >
   <h2 className='my-3'>Events</h2>
   <div className="row">
     {events.map((event, index) => (
