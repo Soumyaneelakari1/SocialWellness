@@ -71,49 +71,55 @@ export default function Event() {
   }, [volevent]);
 
   return (
-    <div className="container">
-      <h2 className='my-3'>Events</h2>
-      <div className="py-4">
-        <table className="table border shadow">
-          <thead>
-            <tr>
-              <th scope="col">S.N</th>
-              <th scope="col">Event Name</th>
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
-              <th scope="col">Venue</th>
-              <th scope="col">Task</th>
-            </tr>
-          </thead>
-          <tbody>
-            {events.map((event, index) => (
-              <tr key={event.eid}>
-                <td>{event.eid}</td>
-                <td>{event.ename}</td>
-                <td>{event.date}</td>
-                <td>{event.time}</td>
-                <td>{event.venue}</td>
-                <td>{event.task}</td>
-                <td>
+    <div className="container" >
+  <h2 className='my-3'>Events</h2>
+  <div className="row">
+    {events.map((event, index) => (
+      <div className="col-md-12 mb-4" key={event.eid}>
+        <div className="card border-0 shadow" style={{ backgroundColor: 'lightblue', borderRadius: '15px' }}>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card-header" style={{ backgroundColor: '#007bff', borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}>
+                <h5 className="text-white">{event.ename}</h5>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-8">
+              <div className="card-body">
+                <p className="card-text">
+                  <strong>Date:</strong> {event.date}&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>Time:</strong> {event.time}&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>Venue:</strong> {event.venue}&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>Task:</strong> {event.task}
+                </p>
+                <p className="card-text">Add description here</p>
+                <div className="d-flex  align-items-center">
                   <Link
-                    className="btn btn-outline-primary mx-2"
-                    to={`/editevent/${event.eid}`}
+                    className="btn btn-outline-primary"
+                    to={`/editEvent/${event.eid}`}
                   >
                     Edit
-                  </Link>
+                  </Link>&nbsp;&nbsp;&nbsp;&nbsp;
                   <button
-                    className="btn btn-danger mx-2"
+                    className="btn btn-danger"
                     onClick={() => participate(event.eid)}
                   >
                     Participate
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <img src="https://via.placeholder.com/150" className="img-fluid" alt="Event" style={{ borderRadius: '15px', float:'right', width:'12vw', marginRight:'10px'}} />
+              {/* Replace "https://via.placeholder.com/150" with the URL of your image */}
+            </div>
+          </div>
+        </div>
       </div>
-      <Link className='btn btn-primary' to='/addevent'>Add Events</Link>
-    </div>
+    ))}
+  </div>
+  <Link className='btn btn-primary' to='/addevent'>Add Events</Link>
+</div>
   );
 }
