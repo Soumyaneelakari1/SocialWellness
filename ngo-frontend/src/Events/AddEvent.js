@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function AddEvent() {
   let navigate = useNavigate();
   const currdate = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-  const initialTime = "0:00:AM";
+  const initialTime = "0:00 AM";
 
   const [event, setEvent] = useState({
     ename: "",
@@ -42,14 +42,17 @@ export default function AddEvent() {
 
   const onTimeChange = (e) => {
     const { name, value } = e.target;
-    const timeParts = time.split(/[:\s]/);
-    const newTime = { ...timeParts };
+    const [hour, minute, period] = time.split(/[:\s]/);
 
-    if (name === "hour") newTime[0] = value;
-    if (name === "minute") newTime[1] = value;
-    if (name === "period") newTime[2] = value;
+    let newTime = {
+      hour,
+      minute,
+      period
+    };
 
-    setEvent({ ...event, time: `${newTime[0]}:${newTime[1]} ${newTime[2]}` });
+    newTime[name] = value;
+
+    setEvent({ ...event, time: `${newTime.hour}:${newTime.minute} ${newTime.period}` });
   };
 
   const onSubmit = async (e) => {
@@ -63,7 +66,7 @@ export default function AddEvent() {
       <div className='row'>
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" style={{ backgroundColor: 'lightblue' }}>
           <div className='text-center fs-2 my-3 fw-semibold text-primary-emphasis p-3 rounded'>Add Events</div>
-          <form onSubmit={(e) => onSubmit(e)}>
+          <form onSubmit={onSubmit}>
             <div className='mb-3'>
               <label htmlFor='ename' className='form-label fs-5'>Event Name</label>
               <input 
@@ -72,7 +75,7 @@ export default function AddEvent() {
                 placeholder='Enter Event Name' 
                 name='ename' 
                 value={ename}
-                onChange={(e) => onInputChange(e)} 
+                onChange={onInputChange} 
               />
             </div>
             <div className='mb-3'>
@@ -82,7 +85,7 @@ export default function AddEvent() {
                 className='form-control' 
                 name='date' 
                 value={date}
-                onChange={(e) => onInputChange(e)} 
+                onChange={onInputChange} 
               />
             </div>
             <div className="mb-3">
@@ -94,7 +97,7 @@ export default function AddEvent() {
                   className="form-select me-2"
                   name="hour"
                   value={time.split(':')[0]}
-                  onChange={(e) => onTimeChange(e)}
+                  onChange={onTimeChange}
                 >
                   {[...Array(13).keys()].map((hour) => (
                     <option key={hour} value={hour}>
@@ -107,10 +110,10 @@ export default function AddEvent() {
                   className="form-select me-2"
                   name="minute"
                   value={time.split(':')[1].split(' ')[0]}
-                  onChange={(e) => onTimeChange(e)}
+                  onChange={onTimeChange}
                 >
-                  {[...Array(61).keys()].map((minute) => (
-                    <option key={minute} value={minute}>
+                  {[...Array(60).keys()].map((minute) => (
+                    <option key={minute} value={minute < 10 ? `0${minute}` : minute}>
                       {minute < 10 ? `0${minute}` : minute}
                     </option>
                   ))}
@@ -119,7 +122,7 @@ export default function AddEvent() {
                   className="form-select"
                   name="period"
                   value={time.split(' ')[1]}
-                  onChange={(e) => onTimeChange(e)}
+                  onChange={onTimeChange}
                 >
                   <option value="AM">AM</option>
                   <option value="PM">PM</option>
@@ -134,7 +137,7 @@ export default function AddEvent() {
                 placeholder='Enter venue' 
                 name='venue' 
                 value={venue}
-                onChange={(e) => onInputChange(e)} 
+                onChange={onInputChange} 
               />
             </div>
             <div className='mb-3'>
@@ -145,7 +148,7 @@ export default function AddEvent() {
                 placeholder='Enter task' 
                 name='task' 
                 value={task}
-                onChange={(e) => onInputChange(e)} 
+                onChange={onInputChange} 
               />
             </div>
             <button type="submit" className='btn btn-outline-primary'>Submit</button>
