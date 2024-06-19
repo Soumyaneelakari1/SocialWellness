@@ -4,11 +4,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import '../pages/BloodCamp.css';
 export default function EditCamp() {
   let navigate = useNavigate();
-
+  const currdate = new Date().toISOString().split('T')[0];
   const { id } = useParams();
 
   const [user, setUser] = useState({
-    date: "",
+    date: currdate,
     time: "0:00 AM",
     day: "",
     venue: "",
@@ -65,6 +65,7 @@ export default function EditCamp() {
                   placeholder='Select Date'
                   name='date'
                   value={date}
+                  min={currdate}
                   onChange={onInputChange}
                 />
               </div>

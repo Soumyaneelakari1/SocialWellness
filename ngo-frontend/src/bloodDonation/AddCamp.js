@@ -4,10 +4,10 @@ import axios from 'axios';
 import '../pages/BloodCamp.css';
 export default function AddCamp() {
     let navigate = useNavigate();
-    const currdate = new Date();
+    const currdate = new Date().toISOString().split('T')[0];
     const initialTime = "0:00:AM";
     const [camp, setCamp] = useState({
-        date: currdate.toISOString().split('T')[0], // Format date to yyyy-mm-dd
+        date: currdate, 
         time: initialTime,
         day: "",
         venue: ""
@@ -58,6 +58,7 @@ export default function AddCamp() {
                                 placeholder='Select Date'
                                 name='date'
                                 value={date}
+                                min={currdate}
                                 onChange={onInputChange}
                             />
                         </div>
