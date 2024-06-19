@@ -46,7 +46,7 @@ export default function BloodCamp() {
                 <th scope="col">Time</th>
                 <th scope="col">Day</th>
                 <th scope="col">Venue</th>
-                <th scope="col">Actions</th>
+                {userRole === 'admin' && (<th scope="col">Actions</th>)}
 /
               </tr>
             </thead>
@@ -60,8 +60,7 @@ export default function BloodCamp() {
                   <td>{camp.time}</td>
                   <td>{camp.day}</td>
                   <td>{camp.venue}</td>
-                  <td>
-                  {userRole === 'admin' && (
+                  {userRole === 'admin' ? (<td>
                     <>
                       <Link className="donation-button2 btn mx-2" to={`/editCamp/${camp.id}`}>
                         Edit
@@ -70,8 +69,7 @@ export default function BloodCamp() {
                         Delete
                       </button>
                     </>
-                  )}
-                  </td>
+                  </td>):( <></>)}
                 </tr>
                ))}
             </tbody>

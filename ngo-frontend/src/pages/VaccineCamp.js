@@ -52,7 +52,7 @@ export default function VaccineCamp() {
               <th scope="col">Date</th>
               <th scope="col">Time</th>
               <th scope="col">Venue</th>
-              <th scope="col">Actions</th>
+              {userRole === 'admin' && (<th scope="col">Actions</th>)}
             </tr>
           </thead>
           <tbody>
@@ -63,18 +63,18 @@ export default function VaccineCamp() {
                 <td>{camp.vdate}</td>
                 <td>{camp.vtime}</td>
                 <td>{camp.vlocation}</td>
-                <td>
-                {userRole === 'admin' && (
-                    <>
-                  <Link className="vaccine-button2 btn mx-2" to={`/editVaccine/${camp.id}`}>
-                    Edit
-                  </Link>
-                  <button className="vaccine-button2 btn mx-2" onClick={() => deleteCamp(camp.id)}>
-                    Delete
-                  </button>
-                  </>
+                {userRole === 'admin' ? (
+                  <td>
+                    <Link className="vaccine-button2 btn mx-2" to={`/editVaccine/${camp.id}`}>
+                      Edit
+                    </Link>
+                    <button className="vaccine-button2 btn mx-2" onClick={() => deleteCamp(camp.id)}>
+                      Delete
+                    </button>
+                  </td>
+                ) : (
+                  <></>
                 )}
-                </td>
               </tr>
             ))}
           </tbody>

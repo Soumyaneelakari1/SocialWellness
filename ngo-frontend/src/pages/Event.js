@@ -95,12 +95,13 @@ export default function Event() {
                 </p>
                 <p className="card-text">Add description here</p>
                 <div className="d-flex  align-items-center">
-                  <Link
+                  {userRole === 'admin' && (<Link
                     className="btn btn-outline-primary"
                     to={`/editEvent/${event.eid}`}
                   >
                     Edit
-                  </Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                  </Link>)}
+                  &nbsp;&nbsp;&nbsp;&nbsp;
                   <button
                     className="btn btn-danger"
                     onClick={() => participate(event.eid)}
