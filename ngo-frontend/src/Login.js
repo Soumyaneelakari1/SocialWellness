@@ -75,7 +75,7 @@ export default function Login() {
     <div className="container-fluid vh-80 d-flex justify-content-center align-items-center login-page" style={{ backgroundImage: `url(${socialHelpImage})`, backgroundSize: 'cover' }}>
     <div className="row">
       <div className="col-md offset-md border rounded p-4 mt-2 shadow login-form">
-        <h2 className="text-center m-4">Register User</h2>
+        <h2 className="text-center m-4">Login</h2>
 
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="mb-3">
@@ -98,9 +98,9 @@ export default function Login() {
               Password
             </label>
             <input
-              type={"text"}
+              type={"password"}
               className="form-control"
-              placeholder="Enter your firstname"
+              placeholder="Enter your password"
               name="password"
               value={password}
               onChange={(e) => handleChange(e)}

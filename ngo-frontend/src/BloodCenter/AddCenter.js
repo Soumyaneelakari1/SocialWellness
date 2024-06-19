@@ -16,7 +16,18 @@ export default function AddCenter() {
   const { u_name, location, timing, status } = bloodCenter;
 
   const onInputChange = (e) => {
-    setBloodCenter({ ...bloodCenter, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    let validValue = value;
+    if (name === 'u_name' || name === 'status') {
+      const regex = /^[a-zA-Z\s]*$/; // Only letters and spaces are allowed
+      if (!regex.test(value)) {
+        alert("Only alphabetic characters and spaces are allowed for hospital name and status.");
+        return;
+      }
+    }
+
+    setBloodCenter({ ...bloodCenter, [name]: validValue });
   };
 
   const onSubmit = async (e) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState ,useEffect} from "react";
-import { Link, useNavigate ,useParams} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function AddUser() {
   let navigate = useNavigate();
@@ -24,16 +24,40 @@ export default function AddUser() {
     firstName: "",
     lastName:"",
     email: "",
-    ph_no:0,
+    ph_no:"",
     address:"",
     role:"User",
     password: "",
   });
 
-  const {  username, firstName, lastName, email,ph_no,address,role, password } = user;
+  const { username, firstName, lastName, email, ph_no, address, role, password } = user;
 
   const onInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    let validValue = value;
+    if (name === "firstName" || name === "lastName") {
+      const regex = /^[a-zA-Z\s]*$/; // Only letters and spaces are allowed
+      if (!regex.test(value)) {
+        return;
+      }
+    }
+
+    if (name === "email") {
+      const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/; // Email format with only lowercase
+      if (!emailRegex.test(value)) {
+        return;
+      }
+    }
+
+    if (name === "ph_no") {
+      const phoneRegex = /^\d{0,10}$/; // Only digits and up to 10 characters
+      if (!phoneRegex.test(value)) {
+        return;
+      }
+    }
+
+    setUser({ ...user, [name]: validValue });
   };
 
   const onSubmit = async (e) => {
@@ -41,9 +65,9 @@ export default function AddUser() {
     const existingUsernames = users.map((u) => u.username);
     const isUsernameExists = existingUsernames.includes(user.username);
     if (isUsernameExists) {
-    alert("Username already exists. Please choose a different username.");
-    return;
-  }
+      alert("Username already exists. Please choose a different username.");
+      return;
+    }
     await axios.post("http://localhost:8080/add", user);
     navigate("/");
   };
@@ -97,7 +121,7 @@ export default function AddUser() {
             <div className="mb-3">
               <label htmlFor="Email" className="form-label">
                 E-mail
-              </label> 
+              </label>
               <input
                 type={"text"}
                 className="form-control"
