@@ -9,7 +9,7 @@ export default function AddCenter() {
   const [bloodCenter, setBloodCenter] = useState({
     u_name: "",
     location: "",
-    timing: "",
+    timing: "00:00 AM",
     status: "",
   });
 
@@ -27,16 +27,24 @@ export default function AddCenter() {
       }
     }
 
-    setBloodCenter({ ...bloodCenter, [name]: validValue });
+    if (name === 'hour' || name === 'minute' || name === 'period') {
+      const [hour, minute, period] = timing.split(/[:\s]/);
+      const newTime = {
+        hour: name === 'hour' ? value : hour,
+        minute: name === 'minute' ? value : minute,
+        period: name === 'period' ? value : period,
+      };
+      setBloodCenter({
+        ...bloodCenter,
+        timing: `${newTime.hour}:${newTime.minute} ${newTime.period}`,
+      });
+    } else {
+      setBloodCenter({ ...bloodCenter, [name]: validValue });
+    }
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const timingPattern = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
-    if (!timingPattern.test(timing)) {
-      alert("Timing must be in the format HH:mm:ss");
-      return;
-    }
     try {
       await axios.post("http://localhost:8080/bloodCenter", bloodCenter, {
         headers: {
@@ -86,16 +94,44 @@ export default function AddCenter() {
               </div>
               <div className="mb-3">
                 <label htmlFor="timing" className="form-label">
-                  Timing (HH:mm:ss)
+                  Timing (Hours : Minutes : AM/PM)
                 </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter timing to open hospital"
-                  name="timing"
-                  value={timing}
-                  onChange={onInputChange}
-                />
+                <div className='d-flex'>
+                  <select
+                    className='form-select me-2'
+                    name='hour'
+                    value={timing.split(':')[0]}
+                    onChange={onInputChange}
+                  >
+                    {[...Array(13).keys()].map(hour => (
+                      <option key={hour} value={hour}>
+                        {hour}
+                      </option>
+                    ))}
+                  </select>
+                  <span className='align-self-center me-1'>:</span>
+                  <select
+                    className='form-select me-2'
+                    name='minute'
+                    value={timing.split(':')[1].split(' ')[0]}
+                    onChange={onInputChange}
+                  >
+                    {[...Array(60).keys()].map(minute => (
+                      <option key={minute} value={minute < 10 ? `0${minute}` : minute}>
+                        {minute < 10 ? `0${minute}` : minute}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    className='form-select'
+                    name='period'
+                    value={timing.split(' ')[1]}
+                    onChange={onInputChange}
+                  >
+                    <option value='AM'>AM</option>
+                    <option value='PM'>PM</option>
+                  </select>
+                </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="status" className="form-label">
