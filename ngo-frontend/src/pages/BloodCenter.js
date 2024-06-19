@@ -1,21 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext} from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import AuthContext from '../AuthContext';
 import './Bloodcenter.css';
 import bcimage from '../BloodCenter/bloodcenter.jpg';
 
 export default function Bloodcenter() {
   const [bloodCenter, setBloodCenter] = useState([]);
+  const [userRole, setUserRole] = useState('');
+  const { authState } = useContext(AuthContext);
 
   const { id } = useParams();
 
   useEffect(() => {
     loadBloodCenters();
+    fetchUserRole(authState.userId);
   }, []);
 
   const loadBloodCenters = async () => {
     const result = await axios.get("http://localhost:8080/bloodCenter");
     setBloodCenter(result.data);
+  };
+
+  const fetchUserRole = async (userId) => {
+    const res = await axios.get(`http://localhost:8080/user/role?userId=${userId}`);
+    setUserRole(res.data);
+    console.log(userRole)
   };
 
   const deleteBloodCenter = async (id) => {
@@ -53,23 +63,23 @@ export default function Bloodcenter() {
                       <Link className="center-button btn btn-primary mx-2" to={`/viewcenter/${center.id}`}>
                         View
                       </Link>
-                      <Link className="center-button btn btn-outline-primary mx-2" to={`/editcenter/${center.id}`}>
+                      {userRole === 'admin' && (<Link className="center-button btn btn-outline-primary mx-2" to={`/editcenter/${center.id}`}>
                         Edit
-                      </Link>
-                      <button className="center-button btn btn-danger mx-2" onClick={() => deleteBloodCenter(center.id)}>
+                      </Link>)}
+                      {userRole === 'admin' && (<button className="center-button btn btn-danger mx-2" onClick={() => deleteBloodCenter(center.id)}>
                         Delete
-                      </button>
+                      </button>)}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <div className="d-flex justify-content-center my-3">
+          {userRole === 'admin' &&  (<div className="d-flex justify-content-center my-3">
           <Link className="center-button btn btn-outline-light" to="/addcenter">
             Add Blood Center
           </Link>
-          </div>
+          </div>)}
         </div>
       </div>
     </div>
