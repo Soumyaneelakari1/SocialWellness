@@ -53,7 +53,7 @@ export default function AddVaccine() {
                         <div className='mb-3'>
                             <label htmlFor='vdate' className='form-label fs-5'>Date</label>
                             <input type={"date"} className='form-control' placeholder='Select date'
-                                name="vdate" value={vdate} onChange={(e) => onInputChange(e)} />
+                                name="vdate" min={currdate} value={vdate} onChange={(e) => onInputChange(e)} />
                         </div>
                         <div className='mb-3'>
                             <label htmlFor="vtime" className="form-label fs-5">

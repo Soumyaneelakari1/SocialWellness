@@ -5,12 +5,12 @@ import '../pages/VaccineCamp.css';
 
 export default function EditVaccine() {
   let navigate = useNavigate();
-
+  const currdate = new Date().toISOString().split('T')[0];
   const { id } = useParams();
 
   const [user, setUser] = useState({
     vaccine: "",
-    vdate: "",
+    vdate: currdate,
     vtime: "",
     vlocation: "",
   });
@@ -52,7 +52,7 @@ export default function EditVaccine() {
             <div className='mb-3'>
               <label htmlFor='vdate' className='form-label fs-5'>Date</label>
               <input type={"date"} className='form-control'
-                placeholder='Select Date' name='vdate' value={vdate}
+                placeholder='Select Date' name='vdate' value={vdate} min={currdate}
                 onChange={(e) => onInputChange(e)} />
             </div>
             <div className='mb-3'>
