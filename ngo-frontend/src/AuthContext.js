@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setAuthState({ userId: 0 ,vId:0 });
+    // navigate('/login'); // Navigate to the login page
+    window.location.reload(); // Reload the page to ensure state is fully reset
   };
 
   return (

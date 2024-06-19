@@ -46,9 +46,11 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/home">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/adduser">Register</Link>
-            </li>
+            {authState.userId === 0 && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/adduser">Register</Link>
+              </li>
+            )}
             <li className="nav-item">
               <Link className="nav-link" to="/addvol">Volunteer</Link>
             </li>
