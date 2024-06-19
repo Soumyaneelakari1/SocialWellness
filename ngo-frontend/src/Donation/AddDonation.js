@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../AuthContext';
-import clothesImage from '../images/clothes.jpg'
+import clothesImage from '../images/clothes.jpg';
 import booksImage from '../images/books.jpg';
 import healthImage from '../images/health.jpg';
 import educationImage from '../images/education.jpg';
@@ -12,10 +12,11 @@ export const AddDonation = () => {
   const [donation, setDonation] = useState({
     amount: '',
     description: '',
-    donationDate: new Date().toISOString().slice(0, 19),  // Format for LocalDateTime
+    donationDate: new Date().toISOString().slice(0, 10),  // Format for Date (YYYY-MM-DD)
     user: { id: authState.userId }  // Referencing the current user's ID
   });
 
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +26,17 @@ export const AddDonation = () => {
     }
   }, [authState.userId, navigate]);
 
+  const validate = () => {
+    let errors = {};
+    if (donation.amount <= 0) {
+      errors.amount = "Amount should be greater than zero";
+    }
+    if (donation.description.length > 200) {
+      errors.description = "Description should be a maximum of 50 characters";
+    }
+    return errors;
+  };
+
   const onInputChange = (e) => {
     const { name, value } = e.target;
     setDonation({ ...donation, [name]: value });
@@ -32,9 +44,14 @@ export const AddDonation = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     try {
       await axios.post('http://localhost:8080/api/donations', donation);
-      navigate('/');  
+      navigate('/');
     } catch (error) {
       console.error('Error adding donation', error);
       alert('There was an error adding the donation');
@@ -58,6 +75,7 @@ export const AddDonation = () => {
                 onChange={onInputChange}
                 required
               />
+              {errors.amount && <small className="text-danger">{errors.amount}</small>}
             </div>
             <div className="mb-3">
               <label htmlFor="description" className="form-label">Description</label>
@@ -68,18 +86,21 @@ export const AddDonation = () => {
                 value={donation.description}
                 onChange={onInputChange}
                 required
+                maxLength="50"
               ></textarea>
+              {errors.description && <small className="text-danger">{errors.description}</small>}
             </div>
             <div className="mb-3">
               <label htmlFor="donationDate" className="form-label">Donation Date</label>
               <input
-                type="datetime-local"
+                type="date"
                 className="form-control"
                 id="donationDate"
                 name="donationDate"
                 value={donation.donationDate}
                 onChange={onInputChange}
                 required
+                disabled
               />
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>

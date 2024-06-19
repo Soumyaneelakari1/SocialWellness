@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,7 +18,7 @@ public class Donate {
     private Long id;
     private Double amount;
     private String description;
-    private LocalDateTime donationDate;
+    private LocalDate donationDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -46,11 +48,11 @@ public class Donate {
         this.description = description;
     }
 
-    public LocalDateTime getDonationDate() {
+    public LocalDate getDonationDate() {
         return donationDate;
     }
 
-    public void setDonationDate(LocalDateTime donationDate) {
+    public void setDonationDate(LocalDate donationDate) {
         this.donationDate = donationDate;
     }
 
