@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import './addcenter.css'
+
 export default function EditUser() {
   let navigate = useNavigate();
 
@@ -10,14 +11,29 @@ export default function EditUser() {
   const [bloodCenter, setUser] = useState({
     u_name: "",
     location: "",
-    timing: "",
+    timing: "00:00 AM",
     status: "",
   });
 
   const { u_name, location, timing ,status } = bloodCenter;
 
   const onInputChange = (e) => {
-    setUser({ ...bloodCenter, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === 'hour' || name === 'minute' || name === 'period') {
+      const [hour, minute, period] = timing.split(/[:\s]/);
+      const newTime = {
+        hour: name === 'hour' ? value : hour,
+        minute: name === 'minute' ? value : minute,
+        period: name === 'period' ? value : period,
+      };
+      setUser({
+        ...bloodCenter,
+        timing: `${newTime.hour}:${newTime.minute} ${newTime.period}`,
+      });
+    } else {
+      setUser({ ...bloodCenter, [name]: value });
+    }
   };
 
   useEffect(() => {
@@ -26,17 +42,16 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const timingPattern = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
-    if (!timingPattern.test(timing)) {
-      alert("Timing must be in the format HH:mm:ss");
-      return;
+    try {
+      await axios.put(`http://localhost:8080/bloodCenter/${id}`, bloodCenter, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      navigate("/");
+    } catch (error) {
+      console.error("Error updating blood center:", error);
     }
-    await axios.put(`http://localhost:8080/bloodCenter/${id}`, bloodCenter, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    navigate("/");
   };
 
   const loadUser = async () => {
@@ -52,55 +67,83 @@ export default function EditUser() {
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
-            <label htmlFor="U_name" className="form-label">
-              HName
+              <label htmlFor="u_name" className="form-label">
+                Hospital Name
               </label>
               <input
-                type={"text"}
+                type="text"
                 className="form-control"
                 placeholder="Enter your Hospital name"
                 name="u_name"
                 value={u_name}
-                onChange={(e) => onInputChange(e)}
+                onChange={onInputChange}
               />
             </div>
             <div className="mb-3">
-            <label htmlFor="Location" className="form-label">
-              Location
+              <label htmlFor="location" className="form-label">
+                Location
               </label>
               <input
-                type={"text"}
+                type="text"
                 className="form-control"
                 placeholder="Enter hospital location"
                 name="location"
                 value={location}
-                onChange={(e) => onInputChange(e)}
+                onChange={onInputChange}
               />
             </div>
             <div className="mb-3">
-            <label htmlFor="Timing" className="form-label">
-              Timing
+              <label htmlFor="timing" className="form-label">
+                Timing (Hours : Minutes : AM/PM)
               </label>
-              <input
-                type={"text"}
-                className="form-control"
-                placeholder="Enter the hospital timing"
-                name="timing"
-                value={timing}
-                onChange={(e) => onInputChange(e)}
-              />
+              <div className='d-flex'>
+                <select
+                  className='form-select me-2'
+                  name='hour'
+                  value={timing.split(':')[0]}
+                  onChange={onInputChange}
+                >
+                  {[...Array(13).keys()].map(hour => (
+                    <option key={hour} value={hour}>
+                      {hour}
+                    </option>
+                  ))}
+                </select>
+                <span className='align-self-center me-1'>:</span>
+                <select
+                  className='form-select me-2'
+                  name='minute'
+                  value={timing.split(':')[1].split(' ')[0]}
+                  onChange={onInputChange}
+                >
+                  {[...Array(60).keys()].map(minute => (
+                    <option key={minute} value={minute < 10 ? `0${minute}` : minute}>
+                      {minute < 10 ? `0${minute}` : minute}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  className='form-select'
+                  name='period'
+                  value={timing.split(' ')[1]}
+                  onChange={onInputChange}
+                >
+                  <option value='AM'>AM</option>
+                  <option value='PM'>PM</option>
+                </select>
+              </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="Status" className="form-label">
-              Status
+              <label htmlFor="status" className="form-label">
+                Status
               </label>
               <input
-                type={"text"}
+                type="text"
                 className="form-control"
                 placeholder="Enter the hospital status"
                 name="status"
                 value={status}
-                onChange={(e) => onInputChange(e)}
+                onChange={onInputChange}
               />
             </div>
             <button type="submit" className="btn btn-outline-primary">
