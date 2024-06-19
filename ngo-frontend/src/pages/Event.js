@@ -119,7 +119,7 @@ export default function Event() {
       </div>
     ))}
   </div>
-  <Link className='btn btn-primary' to='/addevent'>Add Events</Link>
+  {userRole === 'admin' &&(<Link className='btn btn-primary' to='/addevent'>Add Events</Link>)}
 </div>
   );
 }
