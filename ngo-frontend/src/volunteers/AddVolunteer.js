@@ -84,9 +84,12 @@ export const AddVolunteer = () => {
                 value={skills}
                 onChange={onSelectChange}
               >
-                <option value="story">Story writing</option>
-                <option value="teaching">Teaching</option>
-                <option value="pottery">Pottery</option>
+                 <option value="first_aid">First Aid</option>
+                <option value="event_management">Event Management</option>
+                <option value="counseling">Counseling</option>
+                <option value="public_speaking">Public Speaking</option>
+                <option value="fundraising">Fundraising</option>
+                <option value="fundraising">Health Education</option>
               </select>
             </div>
 
@@ -99,9 +102,19 @@ export const AddVolunteer = () => {
                 value={prefTasks}
                 onChange={onSelectChange}
               >
-                <option value="organize">Organizing</option>
-                <option value="teaching">Teaching</option>
-                <option value="pottery">Pottery</option>
+                <option value="first_aid_training">First Aid Training</option>
+                <option value="health_screenings">Conducting Health Screenings</option>
+                <option value="vaccination_campaigns">Assisting in Vaccination Campaigns</option>
+                <option value="health_education">Health Education Sessions</option>
+                <option value="nutrition_education">Nutrition Education</option>
+                <option value="exercise_programs">Leading Exercise Programs</option>
+                <option value="mental_health_support">Providing Mental Health Support</option>
+                <option value="counseling">Counseling</option>
+                <option value="public_health_awareness">Public Health Awareness Campaigns</option>
+                <option value="support_groups">Facilitating Support Groups</option>
+                <option value="community_outreach">Community Outreach</option>
+                <option value="fundraising_for_health">Fundraising for Health Initiatives</option>
+                <option value="blood_donation_drives">Organizing Blood Donation Drives</option>
               </select>
             </div>
 

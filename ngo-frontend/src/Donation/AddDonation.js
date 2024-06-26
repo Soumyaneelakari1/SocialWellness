@@ -159,7 +159,7 @@ export const AddDonation = () => {
               <div className="account-info">
                 <div className="info-item">
                   <p className="label">Account Name:</p>
-                  <p className="info">Your NGO Account Name</p>
+                  <p className="info">NGO Account Name</p>
                 </div>
                 <div className="info-item">
                   <p className="label">Account Number:</p>
@@ -167,11 +167,11 @@ export const AddDonation = () => {
                 </div>
                 <div className="info-item">
                   <p className="label">Bank Name:</p>
-                  <p className="info">Your Bank Name</p>
+                  <p className="info">Bank Name</p>
                 </div>
                 <div className="info-item">
                   <p className="label">Address:</p>
-                  <p className="info">Your Bank Address</p>
+                  <p className="info">Bank Address</p>
                 </div>
                 <div className="info-item">
                   <p className="label">Branch Code:</p>
